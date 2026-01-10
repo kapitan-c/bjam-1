@@ -23,9 +23,17 @@ func _process(delta: float) -> void:
 
 func move_player(direction: Vector2) -> void:
 	#position += direction * TILE_SIZE 
+	var current_position = global_position
 	var collison = move_and_collide(direction*TILE_SIZE)
-	if collison.get_collider().is_door:
-		try_to_open_door(collison.get_collider())
+	if collison:
+		global_position = current_position
+		var cell_position = global_position + (direction * TILE_SIZE)
+		var tile_map = collison.get_collider()
+		var tile_map_cell = tile_map.local_to_map(cell_position/4 )
+		var tile_map_cell_data = tile_map.get_cell_tile_data(tile_map_cell)
+		var custom_data = tile_map_cell_data.get_custom_data("is_door")
+		if custom_data:
+			try_to_open_door(tile_map_cell)
 #use get_collider to detect what the player hits to open doors
 
 func _on_area_2d_entered(area) -> void:

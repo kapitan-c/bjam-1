@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 
 func get_picked_up() -> void:
 	sprite_2d.visible = false
-	monitoring = false
+	collision_shape_2d.set_deferred("disabled", true)
 	audio_stream_player_2d.play()
 	await audio_stream_player_2d.finished
 	queue_free()
