@@ -21,6 +21,7 @@ texture_filter = 1
 texture = ExtResource("1_4flbx")
 
 [node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
 collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

@@ -1,17 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkjv76r6br2li"]
+[gd_scene load_steps=5 format=3 uid="uid://dkjv76r6br2li"]
 
+[ext_resource type="Script" uid="uid://ccjfpa56nr8si" path="res://key.gd" id="1_krfvd"]
 [ext_resource type="Texture2D" uid="uid://utwemennyook" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_1.png" id="1_up4cr"]
+[ext_resource type="AudioStream" uid="uid://dy7ueoib7f3au" path="res://sounds/appear-magic-384915.mp3" id="3_d8y70"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p0yg6"]
 radius = 4.0
 height = 14.0
 
-[node name="Key" type="Area2D"]
+[node name="Key" type="Area2D" groups=["key"]]
 collision_layer = 4
+script = ExtResource("1_krfvd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_p0yg6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture = ExtResource("1_up4cr")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_d8y70")
