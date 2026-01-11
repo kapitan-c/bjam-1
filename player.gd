@@ -8,6 +8,7 @@ signal player_moved
 var player_has_key := false
 var start_position: Vector2
 var player_is_dead := false
+var player_can_move := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,18 +29,22 @@ func _process(delta: float) -> void:
 			move_player(Vector2.RIGHT)
 
 func move_player(direction: Vector2) -> void:
-	var current_position = global_position
-	var collison = move_and_collide(direction*TILE_SIZE)
-	if collison:
-		global_position = current_position
-		var cell_position = global_position + (direction * TILE_SIZE)
-		var tile_map = collison.get_collider()
-		var tile_map_cell = tile_map.local_to_map(cell_position/4 )
-		var tile_map_cell_data = tile_map.get_cell_tile_data(tile_map_cell)
-		var custom_data = tile_map_cell_data.get_custom_data("is_door")
-		if custom_data:
-			try_to_open_door(tile_map_cell)
-	emit_signal("player_moved", global_position)
+	if player_can_move:
+		var current_position = global_position
+		var collison = move_and_collide(direction*TILE_SIZE)
+		if collison:
+			global_position = current_position
+			var cell_position = global_position + (direction * TILE_SIZE)
+			var tile_map = collison.get_collider()
+			var tile_map_cell = tile_map.local_to_map(cell_position/4 )
+			var tile_map_cell_data = tile_map.get_cell_tile_data(tile_map_cell)
+			var custom_data = tile_map_cell_data.get_custom_data("is_door")
+			if custom_data:
+				try_to_open_door(tile_map_cell)
+		emit_signal("player_moved", global_position)
+		player_can_move = false
+		await get_tree().create_timer(0.25).timeout
+		player_can_move = true
 
 
 func _on_area_2d_entered(area) -> void:
