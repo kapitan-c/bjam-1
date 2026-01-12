@@ -5,6 +5,7 @@ const TILE_SIZE = 64
 
 @onready var area_2d: Area2D = %Area2D
 signal player_moved
+signal level_complete
 var player_has_key := false
 var start_position: Vector2
 var player_is_dead := false
@@ -61,6 +62,7 @@ func try_to_open_door(door) -> void:
 		
 func win() -> void:
 	print("woot")
+	emit_signal("level_complete")
 
 func die() -> void:
 	player_is_dead = true

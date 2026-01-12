@@ -2,11 +2,13 @@ extends Node2D
 
 @onready var map: Node2D = %Map
 @onready var player: CharacterBody2D = %Player
-var number_of_player_moves := 0
+@onready var level_complete_screen: CanvasLayer = %LevelCompleteScreen
 
+var number_of_player_moves := 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.connect("player_moved", _on_player_moved)
+	player.connect("level_complete", _on_level_complete)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,3 +34,6 @@ func _on_player_moved(player_position) -> void:
 			player.die()
 		
 		
+func _on_level_complete() -> void:
+	level_complete_screen.show()
+	get_tree().paused = true
