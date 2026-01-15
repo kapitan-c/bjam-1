@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-const TILE_SIZE = 64
+const TILE_SIZE = 48
+var screen_scale_amount := 3
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 @onready var area_2d: Area2D = %Area2D
@@ -10,6 +11,7 @@ var player_has_key := false
 var start_position: Vector2
 var player_is_dead := false
 var player_can_move := true
+var player_move_delay := 0.25
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,14 +39,14 @@ func move_player(direction: Vector2) -> void:
 			global_position = current_position
 			var cell_position = global_position + (direction * TILE_SIZE)
 			var tile_map = collison.get_collider()
-			var tile_map_cell = tile_map.local_to_map(cell_position/4 )
+			var tile_map_cell = tile_map.local_to_map(cell_position/screen_scale_amount)
 			var tile_map_cell_data = tile_map.get_cell_tile_data(tile_map_cell)
 			var custom_data = tile_map_cell_data.get_custom_data("is_door")
 			if custom_data:
 				try_to_open_door(tile_map_cell)
 		emit_signal("player_moved", global_position)
 		player_can_move = false
-		await get_tree().create_timer(0.25).timeout
+		await get_tree().create_timer(player_move_delay).timeout
 		player_can_move = true
 
 

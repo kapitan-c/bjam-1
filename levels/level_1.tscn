@@ -1,14 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://ekx5qw6kgtf5"]
+[gd_scene load_steps=8 format=3 uid="uid://ulrsa7s6ct7q"]
 
-[ext_resource type="Script" uid="uid://b4fs3as7yerds" path="res://level_manager.gd" id="1_coq8p"]
-[ext_resource type="PackedScene" uid="uid://cl62goq06fe7j" path="res://map.tscn" id="1_ia1lp"]
-[ext_resource type="PackedScene" uid="uid://b50qgcc185bkx" path="res://player.tscn" id="2_sasra"]
-[ext_resource type="PackedScene" uid="uid://dkjv76r6br2li" path="res://key.tscn" id="3_sasra"]
+[ext_resource type="Script" uid="uid://b4fs3as7yerds" path="res://level_manager.gd" id="1_ihfcg"]
+[ext_resource type="PackedScene" uid="uid://vlkyy0vgcbp" path="res://maps/map_1.tscn" id="2_ihfcg"]
+[ext_resource type="PackedScene" uid="uid://b50qgcc185bkx" path="res://player.tscn" id="3_5hph3"]
+[ext_resource type="PackedScene" uid="uid://dkjv76r6br2li" path="res://key.tscn" id="4_j7kpp"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c7s6e"]
 load_path = "res://.godot/imported/Dungeon_Tileset.png-2b848ceb254ff9ad7b88d17b869c41a0.ctex"
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_coq8p"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ihfcg"]
 resource_name = "world"
 texture = SubResource("CompressedTexture2D_c7s6e")
 0:0/0 = 0
@@ -135,7 +135,7 @@ texture = SubResource("CompressedTexture2D_c7s6e")
 8:0/0 = 0
 9:0/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_2nij2"]
+[sub_resource type="TileSet" id="TileSet_rka8t"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 2
 terrain_set_0/mode = 0
@@ -145,22 +145,22 @@ custom_data_layer_0/name = "is_door"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "is_hole"
 custom_data_layer_1/type = 1
-sources/0 = SubResource("TileSetAtlasSource_coq8p")
+sources/0 = SubResource("TileSetAtlasSource_ihfcg")
 
-[node name="TestScene" type="Node2D"]
+[node name="Level_1" type="Node2D"]
 scale = Vector2(3, 3)
-script = ExtResource("1_coq8p")
+script = ExtResource("1_ihfcg")
 
-[node name="Map" parent="." instance=ExtResource("1_ia1lp")]
+[node name="Map" parent="." instance=ExtResource("2_ihfcg")]
 unique_name_in_owner = true
-tile_set = SubResource("TileSet_2nij2")
+tile_set = SubResource("TileSet_rka8t")
 
-[node name="Player" parent="." instance=ExtResource("2_sasra")]
+[node name="Player" parent="." instance=ExtResource("3_5hph3")]
 unique_name_in_owner = true
 position = Vector2(24, 24)
 
-[node name="Key" parent="." instance=ExtResource("3_sasra")]
-position = Vector2(104, 24)
+[node name="Key" parent="." instance=ExtResource("4_j7kpp")]
+position = Vector2(40, 72)
 
 [node name="LevelCompleteScreen" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

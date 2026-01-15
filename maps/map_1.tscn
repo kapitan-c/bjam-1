@@ -1,14 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ekx5qw6kgtf5"]
+[gd_scene load_steps=5 format=4 uid="uid://vlkyy0vgcbp"]
 
-[ext_resource type="Script" uid="uid://b4fs3as7yerds" path="res://level_manager.gd" id="1_coq8p"]
-[ext_resource type="PackedScene" uid="uid://cl62goq06fe7j" path="res://map.tscn" id="1_ia1lp"]
-[ext_resource type="PackedScene" uid="uid://b50qgcc185bkx" path="res://player.tscn" id="2_sasra"]
-[ext_resource type="PackedScene" uid="uid://dkjv76r6br2li" path="res://key.tscn" id="3_sasra"]
+[ext_resource type="Script" uid="uid://cy0o3io18kt8l" path="res://map.gd" id="1_thia8"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c7s6e"]
 load_path = "res://.godot/imported/Dungeon_Tileset.png-2b848ceb254ff9ad7b88d17b869c41a0.ctex"
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_coq8p"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wijl4"]
 resource_name = "world"
 texture = SubResource("CompressedTexture2D_c7s6e")
 0:0/0 = 0
@@ -135,7 +132,7 @@ texture = SubResource("CompressedTexture2D_c7s6e")
 8:0/0 = 0
 9:0/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_2nij2"]
+[sub_resource type="TileSet" id="TileSet_e0an3"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 2
 terrain_set_0/mode = 0
@@ -145,52 +142,14 @@ custom_data_layer_0/name = "is_door"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "is_hole"
 custom_data_layer_1/type = 1
-sources/0 = SubResource("TileSetAtlasSource_coq8p")
+custom_data_layer_2/name = "is_trapdoor"
+custom_data_layer_2/type = 1
+sources/0 = SubResource("TileSetAtlasSource_wijl4")
 
-[node name="TestScene" type="Node2D"]
-scale = Vector2(3, 3)
-script = ExtResource("1_coq8p")
+[node name="Map" type="TileMapLayer"]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAAAAAIAAAAAAAIAAAAAAAMAAAAAAAMAAAAAAAQAAAAAAAMAAAABAAAAAAABAAAAAAABAAEAAAABAAEAAAABAAIAAAABAAIAAAABAAMAAAABAAIAAAABAAQAAAABAAMAAAACAAAAAAACAAAAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAACAAMAAAADAAIAAAACAAQAAAACAAMAAAADAAAAAAADAAAAAAADAAEAAAAIAAcAAAADAAIAAAADAAIAAAADAAMAAAAIAAcAAAADAAQAAAAIAAcAAAAEAAAAAAAEAAAAAAAEAAEAAAACAAEAAAAEAAIAAAACAAIAAAAFAAAAAAABAAAAAAAFAAEAAAAIAAcAAAAFAAIAAAAIAAcAAAAFAAQAAAADAAMAAAAGAAAAAAACAAAAAAAGAAEAAAADAAEAAAAGAAIAAAADAAIAAAAGAAQAAAACAAMAAAAHAAAAAAAEAAAAAAAHAAEAAAADAAEAAAAHAAQAAAAIAAcAAAAIAAAAAAAEAAAAAAAIAAQAAAAEAAMAAAAJAAQAAAAHAAMAAAAJAAAAAAAFAAAAAAAJAAEAAAAFAAEAAAAJAAIAAAAFAAIAAAAJAAMAAAAFAAMAAAAIAAEAAAAIAAcAAAAIAAMAAAAEAAIAAAABAAUAAAABAAQAAAACAAUAAAACAAQAAAADAAUAAAADAAQAAAAEAAUAAAAEAAQAAAAFAAUAAAABAAQAAAAGAAUAAAACAAQAAAAHAAUAAAADAAQAAAAIAAUAAAAEAAQAAAAJAAUAAAAFAAQAAAAAAAUAAAAAAAQAAAAIAAIAAAAEAAIAAAAHAAIAAAACAAIAAAAHAAMAAAAIAAcAAAAGAAMAAAADAAIAAAAFAAMAAAAIAAcAAAAEAAMAAAADAAIAAAAEAAQAAAACAAMAAAA=")
+tile_set = SubResource("TileSet_e0an3")
+use_kinematic_bodies = true
+script = ExtResource("1_thia8")
 
-[node name="Map" parent="." instance=ExtResource("1_ia1lp")]
-unique_name_in_owner = true
-tile_set = SubResource("TileSet_2nij2")
-
-[node name="Player" parent="." instance=ExtResource("2_sasra")]
-unique_name_in_owner = true
-position = Vector2(24, 24)
-
-[node name="Key" parent="." instance=ExtResource("3_sasra")]
-position = Vector2(104, 24)
-
-[node name="LevelCompleteScreen" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="LevelCompleteScreen"]
-offset_right = 640.0
-offset_bottom = 384.0
-color = Color(0, 0, 0, 0.627451)
-
-[node name="Label" type="Label" parent="LevelCompleteScreen"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -148.0
-offset_top = 64.0
-offset_right = 148.0
-offset_bottom = 119.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 40
-text = "Level Complete"
-
-[node name="Label2" type="Label" parent="LevelCompleteScreen"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -148.0
-offset_top = 224.0
-offset_right = 148.0
-offset_bottom = 279.0
-grow_horizontal = 2
-text = "Press Space to Continue..."
-horizontal_alignment = 1
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
