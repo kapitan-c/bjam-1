@@ -97,7 +97,6 @@ texture = SubResource("CompressedTexture2D_c7s6e")
 7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:3/0/custom_data_0 = true
 8:3/0 = 0
-8:3/0/custom_data_2 = true
 9:3/0 = 0
 3:2/0 = 0
 4:2/0 = 0
