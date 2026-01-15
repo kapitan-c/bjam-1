@@ -4,6 +4,7 @@ const TILE_SIZE = 48
 var screen_scale_amount := 3
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
+
 @onready var area_2d: Area2D = %Area2D
 signal player_moved
 signal level_complete
@@ -70,4 +71,4 @@ func die() -> void:
 	player_is_dead = true
 	animation_player.play("player_falls")
 	await animation_player.animation_finished
-	get_tree().reload_current_scene()
+	get_parent().restart_level()
