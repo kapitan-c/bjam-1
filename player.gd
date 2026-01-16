@@ -55,6 +55,9 @@ func _on_area_2d_entered(area) -> void:
 	if area.is_in_group("key"):
 		player_has_key = true
 		area.get_picked_up()
+	if area.is_in_group("coin"):
+		GlobalVariables.add_coin()
+		area.get_picked_up()
 		
 		
 func try_to_open_door(door) -> void:

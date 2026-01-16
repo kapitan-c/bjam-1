@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="bjam"
-run/main_scene="uid://ekx5qw6kgtf5"
+run/main_scene="uid://t144oinxu6oh"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -32,6 +32,7 @@ movie_writer/movie_file="/home/bradleyc/Desktop/Godot/bjam/recordedClips/test_cl
 [global_group]
 
 key=""
+coin=""
 
 [input]
 
