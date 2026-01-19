@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://onaab5oa3si4"]
+
+[ext_resource type="Script" uid="uid://b4fs3as7yerds" path="res://level_manager.gd" id="1_t6q73"]
+[ext_resource type="PackedScene" uid="uid://cr87tcf6l10wj" path="res://maps/map_3.tscn" id="2_hokjj"]
+[ext_resource type="PackedScene" uid="uid://b50qgcc185bkx" path="res://player.tscn" id="3_0fd8o"]
+[ext_resource type="PackedScene" uid="uid://dkjv76r6br2li" path="res://key.tscn" id="4_dmnu2"]
+[ext_resource type="PackedScene" uid="uid://e3pvxpxgjuj1" path="res://coin.tscn" id="5_sc6c1"]
+
+[node name="Level_3" type="Node2D"]
+process_mode = 3
+scale = Vector2(3, 3)
+script = ExtResource("1_t6q73")
+
+[node name="Map" parent="." instance=ExtResource("2_hokjj")]
+unique_name_in_owner = true
+
+[node name="Player" parent="." instance=ExtResource("3_0fd8o")]
+unique_name_in_owner = true
+position = Vector2(24, 24)
+
+[node name="Key" parent="." instance=ExtResource("4_dmnu2")]
+position = Vector2(151.33333, 56.000004)
+
+[node name="LevelCompleteScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="LevelCompleteScreen"]
+offset_right = 640.0
+offset_bottom = 384.0
+color = Color(0, 0, 0, 0.627451)
+
+[node name="Label" type="Label" parent="LevelCompleteScreen"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -148.0
+offset_top = 64.0
+offset_right = 148.0
+offset_bottom = 119.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Level Complete"
+
+[node name="Label2" type="Label" parent="LevelCompleteScreen"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -148.0
+offset_top = 224.0
+offset_right = 148.0
+offset_bottom = 279.0
+grow_horizontal = 2
+text = "Press Space to Continue..."
+horizontal_alignment = 1
+
+[node name="Coin" parent="." instance=ExtResource("5_sc6c1")]
+position = Vector2(72.666664, 88.666664)
+
+[node name="Coin2" parent="." instance=ExtResource("5_sc6c1")]
+position = Vector2(136.33334, 23.666666)

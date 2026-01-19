@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b66gae7lxwaqx"]
+
+[ext_resource type="Script" uid="uid://d0b4u4w34wfhl" path="res://flames.gd" id="1_ryqqn"]
+[ext_resource type="Texture2D" uid="uid://c5htqhsktg4fs" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flamethrower/flamethrower_2_2.png" id="2_ryqqn"]
+[ext_resource type="AudioStream" uid="uid://dy7ueoib7f3au" path="res://sounds/appear-magic-384915.mp3" id="3_hw85l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p0yg6"]
+radius = 6.0
+height = 24.0
+
+[node name="Flames" type="Area2D" groups=["flames"]]
+collision_layer = 4
+script = ExtResource("1_ryqqn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_p0yg6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_ryqqn")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_hw85l")
