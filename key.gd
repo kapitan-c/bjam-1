@@ -13,7 +13,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
+#play a sound and disappear
 func get_picked_up() -> void:
 	sprite_2d.visible = false
 	collision_shape_2d.set_deferred("disabled", true)

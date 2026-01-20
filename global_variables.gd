@@ -1,5 +1,7 @@
 extends Node
 
+#used for level loading and tracking total coins
+#coin counting was never used
 var level_id := 1
 var coins := 0
 # Called when the node enters the scene tree for the first time.

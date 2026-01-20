@@ -35,6 +35,7 @@ func _process(delta: float) -> void:
 func move_player(direction: Vector2) -> void:
 	if player_can_move:
 		var current_position = global_position
+		#this is me being stubborn and using physics to determine if i hit a wall or not.
 		var collison = move_and_collide(direction*TILE_SIZE)
 		if collison:
 			global_position = current_position

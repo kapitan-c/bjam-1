@@ -6,17 +6,15 @@ extends Node2D
 var screen_scale_amount := 3
 var level_complete := false
 
-
-
-
 var number_of_player_moves := 0
-# Called when the node enters the scene tree for the first time.
+
+# connect some key functions.
 func _ready() -> void:
 	player.connect("player_moved", _on_player_moved)
 	player.connect("level_complete", _on_level_complete)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# move to next level when the level complete screen is reached
 func _process(delta: float) -> void:
 	if level_complete:
 		if Input.is_action_just_pressed("continue"):
@@ -25,6 +23,7 @@ func _process(delta: float) -> void:
 func _on_player_moved(player_position) -> void:
 	number_of_player_moves += 1
 	var internal_number_of_player_moves = number_of_player_moves
+	#this was a nightmare beause of the scaling i did to fit the viewport. 
 	var tile_map_cell = map.local_to_map(player_position/screen_scale_amount )
 	var tile_map_cell_data = map.get_cell_tile_data(tile_map_cell)
 	var is_hole = tile_map_cell_data.get_custom_data("is_hole")
